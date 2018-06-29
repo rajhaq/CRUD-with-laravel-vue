@@ -4,8 +4,8 @@
                     <div class="card-header">CRUD demo 1</div>
 
                     <div class="card-body">
-                        <router-link class="btn btn-default btn-rounded btn-block btn-lg mb-3" v-bind:to="{path: '/add'}">
-                            Add New Post
+                        <router-link  v-bind:to="{path: '/add'}">
+                            <Button type="success" size="large" icon="plus">Add New Item</Button>
                         </router-link>
 
                         <table id="datatables" class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">
