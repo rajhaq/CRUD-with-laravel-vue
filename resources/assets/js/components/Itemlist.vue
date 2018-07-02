@@ -46,7 +46,10 @@
 <script>
 export default {
     data:function(){
-        return {item: '',status:'',message:''};
+        return {
+            item: '',
+            status:'',
+            message:''};
     },
     created: function() {
         let uri = 'http://127.0.0.1:8000/item/';

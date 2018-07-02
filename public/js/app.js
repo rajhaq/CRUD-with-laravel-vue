@@ -89016,21 +89016,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return { item: { item_title: '', item_price: '', item_info: '' } };
-  },
-  methods: {
-    createItem: function createItem() {
-      var _this = this;
+    data: function data() {
+        return {
+            item: {
+                item_title: '', item_price: '', item_info: ''
+            },
+            loading: false
+        };
+    },
 
-      var uri = 'http://127.0.0.1:8000/item';
-      Axios.post(uri, this.item).then(function (response) {
-        _this.$router.push({ name: 'Itemlist' });
-      });
+    methods: {
+        createItem: function createItem() {
+            var _this = this;
+
+            this.loading = true;
+            var uri = 'http://127.0.0.1:8000/item';
+            Axios.post(uri, this.item).then(function (response) {
+                _this.$router.push({ name: 'Itemlist' });
+                _this.loading = false;
+                _this.success('Item Added');
+            });
+        },
+        success: function success(message) {
+            this.$Notice.success({
+                title: message
+            });
+        },
+        error: function error(message) {
+            this.$Notice.error({
+                title: message
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -89045,111 +89075,125 @@ var render = function() {
     _c("div", { staticClass: "card card-default" }, [
       _c("div", { staticClass: "card-header" }, [_vm._v("Add Item")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.createItem($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.item.item_title,
-                    expression: "item.item_title"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "title", required: "" },
-                domProps: { value: _vm.item.item_title },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c(
+            "Form",
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.item.item_title,
+                      expression: "item.item_title"
                     }
-                    _vm.$set(_vm.item, "item_title", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "price" } }, [_vm._v("Price")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.item.item_price,
-                    expression: "item.item_price"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "price", type: "number", required: "" },
-                domProps: { value: _vm.item.item_price },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "title", required: "" },
+                  domProps: { value: _vm.item.item_title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.item, "item_title", $event.target.value)
                     }
-                    _vm.$set(_vm.item, "item_price", $event.target.value)
                   }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "info" } }, [_vm._v("Info")]),
+                })
+              ]),
               _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.item.item_info,
-                    expression: "item.item_info"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { rows: "4" },
-                domProps: { value: _vm.item.item_info },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "price" } }, [_vm._v("Price")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.item.item_price,
+                      expression: "item.item_price"
                     }
-                    _vm.$set(_vm.item, "item_info", $event.target.value)
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "price", type: "number", required: "" },
+                  domProps: { value: _vm.item.item_price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.item, "item_price", $event.target.value)
+                    }
                   }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-success", attrs: { type: "submit" } },
-              [_vm._v("Create Item")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { staticClass: "btn btn-danger", attrs: { to: "/" } },
-              [_vm._v("Cancel")]
-            )
-          ],
-          1
-        )
-      ])
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "info" } }, [_vm._v("Info")]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.item.item_info,
+                      expression: "item.item_info"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { rows: "4" },
+                  domProps: { value: _vm.item.item_info },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.item, "item_info", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "Button",
+                {
+                  attrs: { type: "primary", loading: _vm.loading },
+                  on: { click: _vm.createItem }
+                },
+                [
+                  !_vm.loading
+                    ? _c("span", [_vm._v("Click me!")])
+                    : _c("span", [_vm._v("Loading...")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { attrs: { to: "/" } },
+                [
+                  _c(
+                    "Button",
+                    {
+                      attrs: { type: "warning", loading: _vm.loading },
+                      on: { click: _vm.createItem }
+                    },
+                    [_vm._v("\n                    Cancel\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ])
   ])
 }
@@ -89264,7 +89308,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return { item: '', status: '', message: '' };
+        return {
+            item: '',
+            status: '',
+            message: '' };
     },
     created: function created() {
         var _this = this;
