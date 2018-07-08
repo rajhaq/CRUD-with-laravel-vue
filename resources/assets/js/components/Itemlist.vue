@@ -26,7 +26,7 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr v-for="(item, index) in filteredItems">
+                            <tr :v-for="(item, index) in filteredItems">
                                 <td>{{ item.item_title }}</td>
                                 <td>{{ item.item_price }}</td>
                                 <td>{{ item.item_info }}</td>  
